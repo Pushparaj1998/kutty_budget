@@ -5,6 +5,7 @@ const bachelorController = require('../controllers/bachelor');
 router.post('/bachelor/register', bachelorController.register);
 router.post('/bachelor/login', bachelorController.login);
 router.get('/bachelor/get', bachelorAuth, bachelorController.get);
+router.get('/bachelor/getAll', bachelorAuth, bachelorController.getAll);
 router.get('/bachelor/logout', bachelorAuth, bachelorController.logout);
 router.get('/bachelor/status/change/:id', bachelorAuth, bachelorController.status);
 

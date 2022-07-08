@@ -49,6 +49,16 @@ class BachelorController {
         }
     }
 
+    async getAll(req, res) {
+        try {
+            const bachelor = await Bachelor.find();
+            return res.status(200).json({ status: 200, success: true, message: "Bachelors Details Fetched Successfully", data: bachelor });
+        } catch (error) {
+            console.log("Error @ getAll bachelor : ", error);
+            return res.status(400).send({ status: 400, success: false, message: "Failed to fetch the bachelors details", error: error.message });
+        }
+    }
+    
     async status(req, res) {
         try {
             const bachelor = await Bachelor.findOne({ _id : req.params.id });

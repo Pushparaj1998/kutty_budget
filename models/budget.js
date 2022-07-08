@@ -7,7 +7,10 @@ const budgetSchema = new mongoose.Schema({
     admin_bachelor_id : {
         type: mongoose.Schema.Types.ObjectId
     },
-    amount: {
+    total_amt: {
+        type: Number
+    },
+    individual_amt:{
         type: Number
     },
     date: {
@@ -27,9 +30,13 @@ const budgetSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    status: {
+    paid: {
         type: Boolean,
         default: false
+    },
+    status: {
+        type: Boolean,
+        default: true
     }
 }, { timestamps : true });
 
