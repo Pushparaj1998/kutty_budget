@@ -4,7 +4,14 @@ const Bachelor = require('../models/bachelors');
 
 const auth = async(req, res, next) => {
     try {
-        const token = req.cookies.bachelor_token;
+        // const token = req.cookies.bachelor_token;
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+
+        if (token == null) {
+            return res.status(400).send({ status:401, success: false, message: "no token provided!!!"})
+        }
+
         const decode = await jwt.verify(token, process.env.JWT_SECRET);
         const bachelor = await Bachelor.findOne({ _id: decode._id, status: true});
         if(!bachelor) {

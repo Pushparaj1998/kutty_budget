@@ -18,8 +18,9 @@ class BachelorController {
             const bachelor = await Bachelor.findByCredentials(req.body.email, req.body.password);
             if(bachelor) {
                 const token = await bachelor.generateAuthToken();
-                return res.cookie('bachelor_token', token, { maxAge: 1000 * 60 * 60 * 24, httpOnly: false })
-                .json({ status: 200, success : true, message: "Login successfull", data: bachelor });
+                // return res.cookie('bachelor_token', token, { maxAge: 1000 * 60 * 60 * 24, httpOnly: false })
+                // .json({ status: 200, success : true, message: "Login successfull", data: bachelor });
+                return res.status(200).send({ status: 200, success: true, message: "Login Successfully", token : token, data: bachelor})
             } else {
                 return res.status(200).send({ status: 400, success: false, message: "Bachelor not found" });
             }
